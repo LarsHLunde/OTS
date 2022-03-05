@@ -32,13 +32,22 @@ function updateKeyTable() {
 }
 
 function sendSecret(){
-	var input = document.getElementById("input");
-	message = {}
-	message.value = input.value;
-	console.log(JSON.stringify(message))
-	$.post("/admin/create", JSON.stringify(message), updateKeyTable, "json")
+        var input = document.getElementById("input");
+        message = {}
+        message.value = input.value;
+        var json_string = JSON.stringify(message);
+        input.value = "";
+        $.ajax({
+                url: "/admin/create",
+                type: "POST",
+                data: json_string,
+                contentType:"application/json; charset=utf-8",
+                dataType:"json"
+        });
 };
 
 function init() {
-	updateKeyTable();
+        updateKeyTable();
+        setInterval(updateKeyTable, 1000);
 };
+
