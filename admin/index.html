@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>One Time Secret</title>
+<meta name="description" content="One Time Secret">
+<meta name="author" content="Lars H Lunde">
+
+<meta property="og:title" content="One Time Secret">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<script src="/js/jquery-3.6.0.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/admin/js/script-admin.js"></script>
+
+</head>
+
+<body onload="init()">
+
+
+
+<div class="container">
+	<div class="jumbotron">
+	<h1>One Time Secret Admin</h1>
+
+	<div class="table-responsive" id="keytable">          
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Unopened secrets</th>
+                                        <th>Create date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Loading...</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<p></p>
+	
+	<form onsubmit="sendSecret()">
+		<div class="form-group">
+			<label>Add new secret</label>
+			<textarea class="form-control" id="input" rows="10"></textarea>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+
+
+	</div>
+</div>
+
+
+
+
+</body>
+</html>
+
