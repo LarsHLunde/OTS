@@ -77,12 +77,12 @@ admin.get('/admin/keys', function(req, res) {
 
 admin.post('/admin/create', (req, res) => {
         (async () => {
-		var message = JSON.parse(Object.keys(req.body)[0]);
-		var id = genString(32);
-		await client.set("secret." + id, message.value);
-		await client.set("timestamp." + id, Date.now());
-		res.sendStatus(200);
-	})();
+                var message = req.body;
+                var id = genString(32);
+                await client.set("secret." + id, message.value);
+                await client.set("timestamp." + id, Date.now());
+                res.sendStatus(200);
+        })();
 });
 
 
