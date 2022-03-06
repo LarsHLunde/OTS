@@ -1,4 +1,4 @@
-# OTS
+# One Time Secret
 
 ## Scope
 This program saves secret messages with randomly created URL's  
