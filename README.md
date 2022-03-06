@@ -28,6 +28,7 @@ for database I'm using a Redis instance on localhost.
 - Install dotenv for project
 - Move url prepend to dotenv
 - Create api-endoint for url prepend
+- Fix all references to relative paths
 - Add secret labels
 - Move password from index.js to redis
 - Rewrite express-basic-auth to use redis
