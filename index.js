@@ -197,7 +197,7 @@ admin.get('/*', function(req, res) {
     res.send(admin_data[req.originalUrl]);
   }
 
-  else if(req.originalUrl.match == "/") {
+  else if(req.originalUrl.match == "/" || req.originalUrl.match == "") {
     res.set("Content-Type", "text/html");
     res.send(app_data["/index.html"]);
   }
