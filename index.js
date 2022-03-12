@@ -44,7 +44,7 @@ function fileTree(folder) {
     if (curstat.isDirectory()) {
       var files = fs.readdirSync(curf);
       files.forEach((element) => {
-        plist.push(curf.substring(folder.length+1) + "/" + element);
+        plist.push(curf + "/" + element);
       });
     }
     else {
@@ -61,8 +61,10 @@ var app_files = fileTree("frontend");
 var app_data = {};
 
 app_files.forEach((element) => {
-  app_data[element] = fs.readFileSync(element);
+  app_data[element.substring(9)] = fs.readFileSync(element);
 });
+
+console.log(app_data);
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'frontend/secret.html'));
