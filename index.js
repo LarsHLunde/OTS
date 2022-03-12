@@ -207,7 +207,7 @@ admin.get('/*', function(req, res) {
 		  }
 		res.send(JSON.stringify(out));
 	  })();
-  })
+  }
 
   else {
     res.set("Content-Type", "text/html");
