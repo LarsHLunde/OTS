@@ -17,6 +17,11 @@ const client = redis.createClient({
 
 require('dotenv').config();
 
+client.on('connect', () => console.log('Connected to Redis'));
+client.on('error', (err) => console.log('Redis Client Error', err));
+client.connect();
+
+
 //--------------------------------- Functions ----------------------------------
 
 function genString(len) {
@@ -39,27 +44,25 @@ function fileTree(folder) {
     if (curstat.isDirectory()) {
       var files = fs.readdirSync(curf);
       files.forEach((element) => {
-        plist.push(curf + "/" + element);
+        plist.push(curf.substring(folder.length+1) + "/" + element);
       });
     }
     else {
       result.push(curf);
     }
   }
-  console.log(result);
   return result;
 }
 
-fileTree("frontend");
-
-//-------------------------------- User options --------------------------------
-
-client.on('connect', () => console.log('Connected to Redis'));
-client.on('error', (err) => console.log('Redis Client Error', err));
-client.connect();
-
 
 //-------------------------------- App functions -------------------------------
+
+var app_files = fileTree("frontend");
+var app_data = {};
+
+app_files.forEach((element) => {
+  app_data[element] = fs.readFileSync(element);
+});
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'frontend/secret.html'));
