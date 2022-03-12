@@ -15,6 +15,40 @@ const client = redis.createClient({
 
 require('dotenv').config();
 
+//--------------------------------- Functions ----------------------------------
+
+function genString(len) {
+    const charset = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let output = '';
+    for (let i = 0; i < len; ++i) {
+        output += charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    return output;
+}
+
+function fileTree(folder) {
+  var result = [];
+  var plist = [folder];
+
+  while (plist.length > 0){
+    var curf = plist.pop();
+    var curstat = fs.statSync(curf);
+
+    if (curf.isDirectory()) {
+      var files = fs.readdirSync(curf);
+      files.forEach((element) => {
+        plist.push(curf + "/" + element);
+      });
+    }
+    else {
+      result.push(curf);
+    }
+  }
+  console.log(result);
+  return result;
+}
+
+fileTree("frontend");
 
 //-------------------------------- User options --------------------------------
 
@@ -25,37 +59,31 @@ client.connect();
 
 //-------------------------------- App functions -------------------------------
 
-app.use(express.static('frontend'));
-
-app.get('/secret/*', function(req, res) {
+app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'frontend/secret.html'));
 });
 
-
-app.get('/api/secret/*', function(req, res) {
-	(async () => {
-		var secret = await client.get("secret." + req.originalUrl.split("/")[3]);
-		if(!secret) {
-			res.send("ERROR: Invalid or deleted key");
-		} else {
-			await client.del("secret." + req.originalUrl.split("/")[3]);
-			await client.del("timestamp." + req.originalUrl.split("/")[3]);
-			res.send(secret);
-		}
-	})();
-});
+//app.use(express.static('frontend'));
+//
+//app.get('/secret/*', function(req, res) {
+//  res.sendFile(path.join(__dirname, 'frontend/secret.html'));
+//});
+//
+//app.get('/api/secret/*', function(req, res) {
+//	(async () => {
+//		var secret = await client.get("secret." + req.originalUrl.split("/")[3]);
+//		if(!secret) {
+//			res.send("ERROR: Invalid or deleted key");
+//		} else {
+//			await client.del("secret." + req.originalUrl.split("/")[3]);
+//			await client.del("timestamp." + req.originalUrl.split("/")[3]);
+//			res.send(secret);
+//		}
+//	})();
+//});
 
 
 //------------------------------- Admin functions ------------------------------
-
-function genString(len) {
-    const charset = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let output = '';
-    for (let i = 0; i < len; ++i) {
-        output += charset.charAt(Math.floor(Math.random() * charset.length));
-    }
-    return output;
-}
 
 admin.use(bodyParser.json());
 admin.use(bodyParser.urlencoded({ extended: false }));
