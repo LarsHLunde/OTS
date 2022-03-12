@@ -199,7 +199,7 @@ admin.get('/*', function(req, res) {
 
   else if(req.originalUrl == "/") {
     res.set("Content-Type", "text/html");
-    res.send(app_data["/index.html"]);
+    res.send(admin_data["/index.html"]);
   }
 
   else if(req.originalUrl.match("/keys")) {
