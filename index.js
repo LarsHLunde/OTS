@@ -76,6 +76,23 @@ app.get('/*', function(req, res) {
     res.send(app_data[req.originalUrl]);
   }
 
+  else if(req.originalUrl.match("/api/secret/")) {
+    (async () => {
+    	var secret = await client.get("secret." + req.originalUrl.split("/")[3]);
+    	if(!secret) {
+    		res.send("ERROR: Invalid or deleted key");
+    	} else {
+    		await client.del("secret." + req.originalUrl.split("/")[3]);
+    		await client.del("timestamp." + req.originalUrl.split("/")[3]);
+    		res.send(secret);
+    	}
+    })();
+  }
+
+  else if(req.originalUrl.match("/secret/")) {
+    res.send(app_data["/secret.html"])
+  }
+
   else {
     res.send(app_data["/404.html"]);
   }
