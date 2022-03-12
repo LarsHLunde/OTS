@@ -91,7 +91,7 @@ app_files.forEach((element) => {
 });
 
 replacements_app.forEach((rep) => {
-  rep[files].foreEach((file) = > {
+  rep[files].foreEach((file) => {
     app_data["file"].replaceAll(key, value);
   })
 })
