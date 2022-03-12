@@ -202,7 +202,7 @@ admin.get('/*', function(req, res) {
     res.send(app_data["/index.html"]);
   }
 
-  else if(req.originalUrl.match("/admin/keys")) {
+  else if(req.originalUrl.match("/keys")) {
     (async () => {
 		  var out = {};
       keys = await client.keys("secret.*");
