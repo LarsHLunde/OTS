@@ -71,8 +71,6 @@ app_files.forEach((element) => {
   }
 });
 
-console.log(app_data);
-
 app.get('/*', function(req, res) {
   if (app_data[req.originalUrl]){
     res.send(app_data[req.originalUrl]);
