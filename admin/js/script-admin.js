@@ -43,7 +43,7 @@ function sendSecret(){
                 data: json_string,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
-        }).done(function(data) {updateKeyTable()});
+        }).then(function(data) {updateKeyTable()});
 };
 
 function init() {
