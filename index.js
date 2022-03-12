@@ -59,7 +59,13 @@ function fileTree(folder) {
 
 var app_files = fileTree("frontend");
 var app_data = {};
-var text_filter = { html: 1, js: 1, svg: 1, css: 1, map: 1}
+var text_filter = {
+  html: "text/html",
+  js: "application/javascript",
+  svg: "image/svg+xml",
+  css: "text/css",
+  map: "application/json"
+}
 
 app_files.forEach((element) => {
   if (text_filter[element.split(".").slice(-1).pop()]){
@@ -73,6 +79,10 @@ app_files.forEach((element) => {
 
 app.get('/*', function(req, res) {
   if (app_data[req.originalUrl]){
+    var data_type = req.originalUrl.split(".").slice(-1).pop()
+    if (text_filter[data_type]) {
+      res.set('Content-Type', text_filter[data_type]);
+    }
     res.send(app_data[req.originalUrl]);
   }
 
