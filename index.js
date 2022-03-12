@@ -61,7 +61,7 @@ var app_files = fileTree("frontend");
 var app_data = {};
 
 app_files.forEach((element) => {
-  app_data[element.substring(8)] = fs.readFileSync(element);
+  app_data[element.substring(8)] = fs.readFileSync(element).toString();
 });
 
 console.log(app_data);
@@ -139,5 +139,5 @@ app.listen(parseInt(process.env.APP_PORT), () => {
 });
 
 admin.listen(parseInt(process.env.ADMIN_PORT), () => {
-  console.log("Admin listening at " + process.env.APP_PREPEND + "/admin");
+  console.log("Admin listening at " + process.env.ADMIN_PREPEND + "/admin");
 });
