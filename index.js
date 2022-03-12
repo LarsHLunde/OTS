@@ -175,7 +175,6 @@ admin_files.forEach((element) => {
 
 replacements_admin.forEach((rep) => {
   rep["files"].forEach((file) => {
-    console.log(file);
     admin_data[file] = admin_data[file].replaceAll(rep["key"], rep["value"]);
   })
 })
@@ -214,23 +213,8 @@ admin.get('/*', function(req, res) {
     res.send(app_data["/404.html"]);
   }
 });
-//admin.use(express.static('frontend'));
-//admin.use('/admin', express.static('admin'))
-//
-//admin.get('/admin/keys', function(req, res) {
-//        (async () => {
-//		var out = {};
-//                keys = await client.keys("secret.*");
-//		for (let i = 0; i < keys.length; i++) {
-//			out[keys[i]] = await client.get("timestamp." + keys[i].substring(7))
-//		}
-//		res.send(JSON.stringify(out));
-//	})();
-//});
-//
 
-
-admin.post('/admin/create', (req, res) => {
+admin.post('/create', (req, res) => {
         (async () => {
                 var message = req.body;
                 var id = genString(32);
@@ -248,5 +232,5 @@ app.listen(parseInt(process.env.APP_PORT), () => {
 });
 
 admin.listen(parseInt(process.env.ADMIN_PORT), () => {
-  console.log("Admin listening at " + process.env.ADMIN_PREPEND + "/admin");
+  console.log("Admin listening at " + process.env.ADMIN_PREPEND");
 });
