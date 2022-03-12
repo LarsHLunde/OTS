@@ -41,12 +41,15 @@ function sendSecret(){
                 url: "ADMIN_PREPEND_MARKER/create",
                 type: "POST",
                 data: json_string,
-                contentType:"application/json; charset=utf-8",
-                dataType:"json"
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+								success: function(result){
+									updateKeyTable()
+								}
         });
 };
 
 function init() {
         updateKeyTable();
-        setInterval(updateKeyTable, 1000);
+        setInterval(updateKeyTable, 10000);
 };
