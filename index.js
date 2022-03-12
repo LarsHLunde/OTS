@@ -36,7 +36,7 @@ function fileTree(folder) {
     var curf = plist.pop();
     var curstat = fs.statSync(curf);
 
-    if (curf.isDirectory()) {
+    if (curstat.isDirectory()) {
       var files = fs.readdirSync(curf);
       files.forEach((element) => {
         plist.push(curf + "/" + element);
