@@ -144,7 +144,7 @@ app.get('/*', function(req, res) {
 var admin_files = fileTree("admin");
 var admin_data = {};
 
-var replacements_app = [
+var replacements_admin = [
   {
     key: "APP_PREPEND_MARKER",
     value: process.env.APP_PREPEND,
