@@ -72,7 +72,7 @@ app.get('/*', function(req, res) {
   }
 
   else {
-    res.send(app_data["404.html"]);
+    res.send(tostring((app_data["404.html"]));
   }
   //res.sendFile(path.join(__dirname, 'frontend/secret.html'));
 });
