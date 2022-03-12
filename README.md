@@ -22,20 +22,21 @@ for database I'm using a Redis instance on localhost.
 - Ajax create secret callback doesn't work, so the list just updates on timer and not on action
 
 ### Plans
-- Fix ajax callback for update and   
-  increase refresh timer for secret list
-- Create yum installer script
-- Install dotenv for project
-- Move url prepend to dotenv
-- Load all served files to memory
-- Add reference-markers to served files
-- Create a variable replacement function
-- Replace reference markers with set variables
-- Fix favicon placement
-- Add secret labels
-- Move password from index.js to redis
-- Rewrite express-basic-auth to use redis
-- "Create default" password mechanism
-- Add crypto library
-- Encrypt admin password
-- Make look nicer
+|Task|State|
+|-|-|
+|Fix ajax callback for update and increase refresh timer for secret list|:x:|
+|Create yum installer script|:x:|
+|Install dotenv for project|:x:|
+|Move url prepend to dotenv|:x:|
+|Load all served files to memory|:x:|
+|Add reference-markers to served files|:x:|
+|Create a variable replacement function|:x:|
+|Replace reference markers with set variables|:x:|
+|Fix favicon placement|:x:|
+|Add secret labels|:x:|
+|Move password from index.js to redis|:x:|
+|Rewrite express-basic-auth to use redis|:x:|
+|"Create default" password mechanism|:x:|
+|Add crypto library|:x:|
+|Encrypt admin password|:x:|
+|Make look nicer|:x:|
