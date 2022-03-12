@@ -232,5 +232,5 @@ app.listen(parseInt(process.env.APP_PORT), () => {
 });
 
 admin.listen(parseInt(process.env.ADMIN_PORT), () => {
-  console.log("Admin listening at " + process.env.ADMIN_PREPEND");
+  console.log("Admin listening at " + process.env.ADMIN_PREPEND);
 });
