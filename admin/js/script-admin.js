@@ -25,7 +25,6 @@ function updateKeyTable() {
 			outString += "<tr><td><a href=\"" + preLink + curKey.substring(7) + "\">" + preLink + curKey.substring(7) + "</a></td><td>" + tsToDate(keys[curKey]) + "</td></tr>"
 			keys[curKey] = "0";
 			curLargest = 0;
-			console.log(keys);
 		}
 		keytable.children[0].children[1].innerHTML = outString;
 	})
@@ -43,7 +42,15 @@ function sendSecret(){
                 data: json_string,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
-        }).then(function(data) {updateKeyTable()});
+        })  .pipe(function(data) {
+    return data.responseCode != 200 ?
+      $.Deferred().reject( data ) :
+      data;
+  })
+  .fail(function(data) {
+    if ( data.responseCode )
+      console.log( data.responseCode );
+  });
 };
 
 function init() {
