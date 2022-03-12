@@ -94,6 +94,6 @@ app.listen(parseInt(process.env.APP_PORT), () => {
   console.log("App listening at " + process.env.APP_PREPEND);
 });
 
-admin.listen(parseInt(process.env.ADMIN_PORT, () => {
+admin.listen(parseInt(process.env.ADMIN_PORT), () => {
   console.log("Admin listening at " + process.env.APP_PREPEND + "/admin");
 });
