@@ -59,6 +59,7 @@ function fileTree(folder) {
 
 var app_files = fileTree("frontend");
 var app_data = {};
+
 var text_filter = {
   html: "text/html",
   js: "application/javascript",
@@ -66,6 +67,18 @@ var text_filter = {
   css: "text/css",
   map: "application/json"
 }
+
+var replacements_app = [
+  {
+    key: "APP_PREPEND_MARKER",
+    value: process.env.APP_PREPEND,
+    files: [
+      "/secret.html",
+      "/404.html",
+      "/js/script-secret.js"
+    ]
+  },
+]
 
 app_files.forEach((element) => {
   if (text_filter[element.split(".").slice(-1).pop()]){
@@ -77,11 +90,18 @@ app_files.forEach((element) => {
   }
 });
 
+replacements_app.forEach((rep) => {
+  rep[files].foreEach((file) = > {
+    app_data["file"].replaceAll(key, value);
+  })
+})
+
+
 app.get('/*', function(req, res) {
   if (app_data[req.originalUrl]){
     var data_type = req.originalUrl.split(".").slice(-1).pop()
     if (text_filter[data_type]) {
-      res.set('Content-Type', text_filter[data_type]);
+      res.set("Content-Type", text_filter[data_type]);
     }
     res.send(app_data[req.originalUrl]);
   }
@@ -100,33 +120,15 @@ app.get('/*', function(req, res) {
   }
 
   else if(req.originalUrl.match("/secret/")) {
+    res.set("Content-Type", "text/html");
     res.send(app_data["/secret.html"])
   }
 
   else {
+    res.set("Content-Type", "text/html");
     res.send(app_data["/404.html"]);
   }
-  //res.sendFile(path.join(__dirname, 'frontend/secret.html'));
 });
-
-//app.use(express.static('frontend'));
-//
-//app.get('/secret/*', function(req, res) {
-//  res.sendFile(path.join(__dirname, 'frontend/secret.html'));
-//});
-//
-//app.get('/api/secret/*', function(req, res) {
-//	(async () => {
-//		var secret = await client.get("secret." + req.originalUrl.split("/")[3]);
-//		if(!secret) {
-//			res.send("ERROR: Invalid or deleted key");
-//		} else {
-//			await client.del("secret." + req.originalUrl.split("/")[3]);
-//			await client.del("timestamp." + req.originalUrl.split("/")[3]);
-//			res.send(secret);
-//		}
-//	})();
-//});
 
 
 //------------------------------- Admin functions ------------------------------
