@@ -59,7 +59,7 @@ admin.use(bodyParser.urlencoded({ extended: false }));
 
 admin.use(basicAuth({
     users: { admin: 'admin' },
-    challenge: true 
+    challenge: true
 }));
 
 admin.use(express.static('frontend'));
@@ -69,7 +69,7 @@ admin.get('/admin/keys', function(req, res) {
         (async () => {
 		var out = {};
                 keys = await client.keys("secret.*");
-		for (let i = 0; i < keys.length; i++) { 
+		for (let i = 0; i < keys.length; i++) {
 			out[keys[i]] = await client.get("timestamp." + keys[i].substring(7))
 		}
 		res.send(JSON.stringify(out));
@@ -89,6 +89,7 @@ admin.post('/admin/create', (req, res) => {
 
 //---------------------------------- Post declarative startup ----------------------------------
 
+console.log(process.env);
 app.listen(app_port, () => {
   console.log(`App listening at http://localhost:${app_port}`)
 });
