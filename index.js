@@ -61,13 +61,19 @@ var app_files = fileTree("frontend");
 var app_data = {};
 
 app_files.forEach((element) => {
-  app_data[element.substring(9)] = fs.readFileSync(element);
+  app_data[element.substring(8)] = fs.readFileSync(element);
 });
 
 console.log(app_data);
 
 app.get('/*', function(req, res) {
-  res.send(req.originalUrl);
+  if (app_data[req.originalUrl]){
+    res.send(app_data[req.originalUrl]);
+  }
+
+  else {
+    res.send(app_data["404.html"]);
+  }
   //res.sendFile(path.join(__dirname, 'frontend/secret.html'));
 });
 
