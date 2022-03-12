@@ -225,7 +225,7 @@ admin.post('/create', (req, res) => {
                 var id = genString(32);
                 await client.set("secret." + id, message.value);
                 await client.set("timestamp." + id, Date.now());
-                res.sendStatus(200);
+                res.send();
         })();
 });
 
