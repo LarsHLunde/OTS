@@ -1,4 +1,4 @@
-//---------------------------------- Library imports ----------------------------------
+//------------------------------- Library imports ------------------------------
 const express = require('express');
 const app = express();
 const admin = express();
@@ -9,19 +9,21 @@ const bodyParser = require("body-parser");
 const path = require('path');
 
 const redis = require('redis');
-const client = redis.createClient();
+const client = redis.createClient({
+  url: process.env.REDIS_URL
+});
 
 require('dotenv').config();
 
 
-//---------------------------------- User options ----------------------------------
+//-------------------------------- User options --------------------------------
 
 client.on('connect', () => console.log('Connected to Redis'));
 client.on('error', (err) => console.log('Redis Client Error', err));
 client.connect();
 
 
-//---------------------------------- App functions ----------------------------------
+//-------------------------------- App functions -------------------------------
 
 app.use(express.static('frontend'));
 
@@ -44,7 +46,7 @@ app.get('/api/secret/*', function(req, res) {
 });
 
 
-//---------------------------------- Admin functions ----------------------------------
+//------------------------------- Admin functions ------------------------------
 
 function genString(len) {
     const charset = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -88,7 +90,7 @@ admin.post('/admin/create', (req, res) => {
 });
 
 
-//---------------------------------- Post declarative startup ----------------------------------
+//--------------------------- Post declarative startup -------------------------
 
 app.listen(parseInt(process.env.APP_PORT), () => {
   console.log("App listening at " + process.env.APP_PREPEND);
