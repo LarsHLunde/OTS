@@ -89,11 +89,10 @@ admin.post('/admin/create', (req, res) => {
 
 //---------------------------------- Post declarative startup ----------------------------------
 
-console.log(process.env);
-app.listen(app_port, () => {
-  console.log(`App listening at http://localhost:${app_port}`)
+app.listen(parseInt(process.env.APP_PORT), () => {
+  console.log('App listening at http://localhost:' + process.env.APP_PORT);
 });
 
-admin.listen(admin_port, () => {
-  console.log(`Admin listening at http://localhost:${admin_port}`)
+admin.listen(parseInt(process.env.ADMIN_PORT), () => {
+  console.log('Admin listening at http://localhost:' + process.env.ADMIN_PORT);
 });
