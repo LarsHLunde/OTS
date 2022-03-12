@@ -59,9 +59,16 @@ function fileTree(folder) {
 
 var app_files = fileTree("frontend");
 var app_data = {};
+var text_filter = { html: 1, js: 1, svg: 1, css: 1, map: 1}
 
 app_files.forEach((element) => {
-  app_data[element.substring(8)] = fs.readFileSync(element).toString();
+  if (text_filter[element.split(".").slice(-1).pop()]){
+    app_data[element.substring(8)] = fs.readFileSync(element).toString();
+  }
+
+  else {
+    app_data[element.substring(8)] = fs.readFileSync(element);
+  }
 });
 
 console.log(app_data);
