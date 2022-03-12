@@ -141,6 +141,45 @@ app.get('/*', function(req, res) {
 
 
 //------------------------------- Admin functions ------------------------------
+var admin_files = fileTree("admin");
+var admin_data = {};
+
+var replacements_app = [
+  {
+    key: "APP_PREPEND_MARKER",
+    value: process.env.APP_PREPEND,
+    files: [
+      "/secret.html",
+      "/404.html",
+      "/js/script-secret.js"
+    ]
+  },
+  {
+    key: "ADMIN_PREPEND_MARKER",
+    value: process.env.ADMIN_PREPEND,
+    files: [
+      "/index.html",
+      "/js/script-admin.js"
+    ]
+  },
+]
+
+admin_files.forEach((element) => {
+  if (text_filter[element.split(".").slice(-1).pop()]){
+    admin_data[element.substring(5)] = fs.readFileSync(element).toString();
+  }
+
+  else {
+    admin_data[element.substring(5)] = fs.readFileSync(element);
+  }
+});
+
+replacements_admin.forEach((rep) => {
+  rep["files"].forEach((file) => {
+    admin_data[file] = admin_data[file].replaceAll(rep["key"], rep["value"]);
+  })
+})
+
 
 admin.use(bodyParser.json());
 admin.use(bodyParser.urlencoded({ extended: false }));
@@ -150,19 +189,46 @@ admin.use(basicAuth({
     challenge: true
 }));
 
-admin.use(express.static('frontend'));
-admin.use('/admin', express.static('admin'))
+admin.get('/*', function(req, res) {
+  if (admin_data[req.originalUrl]){
+    var data_type = req.originalUrl.split(".").slice(-1).pop()
+    if (text_filter[data_type]) {
+      res.set("Content-Type", text_filter[data_type]);
+    }
+    res.send(admin_data[req.originalUrl]);
+  }
 
-admin.get('/admin/keys', function(req, res) {
-        (async () => {
-		var out = {};
-                keys = await client.keys("secret.*");
-		for (let i = 0; i < keys.length; i++) {
-			out[keys[i]] = await client.get("timestamp." + keys[i].substring(7))
-		}
+  else if(req.originalUrl.match("/admin/keys") {
+    (async () => {
+		  var out = {};
+      keys = await client.keys("secret.*");
+		  for (let i = 0; i < keys.length; i++) {
+			  out[keys[i]] = await client.get("timestamp." + keys[i].substring(7))
+		  }
 		res.send(JSON.stringify(out));
-	})();
+	  })();
+  })
+
+  else {
+    res.set("Content-Type", "text/html");
+    res.send(app_data["/404.html"]);
+  }
 });
+//admin.use(express.static('frontend'));
+//admin.use('/admin', express.static('admin'))
+//
+//admin.get('/admin/keys', function(req, res) {
+//        (async () => {
+//		var out = {};
+//                keys = await client.keys("secret.*");
+//		for (let i = 0; i < keys.length; i++) {
+//			out[keys[i]] = await client.get("timestamp." + keys[i].substring(7))
+//		}
+//		res.send(JSON.stringify(out));
+//	})();
+//});
+//
+
 
 admin.post('/admin/create', (req, res) => {
         (async () => {
