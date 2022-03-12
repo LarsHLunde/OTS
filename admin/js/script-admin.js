@@ -8,7 +8,7 @@ function tsToDate(ts) {
 function updateKeyTable() {
 	var keytable = document.getElementById("keytable");
 
-  $.get("ADMIN_PREPEND_MARKER/admin/keys", function(data) {
+  $.get("ADMIN_PREPEND_MARKER/keys", function(data) {
 		var keys = JSON.parse(data);
 		var outString = "";
 		var totalEntries = Object.keys(keys).length;
@@ -38,7 +38,7 @@ function sendSecret(){
         var json_string = JSON.stringify(message);
         input.value = "";
         $.ajax({
-                url: "ADMIN_PREPEND_MARKER/admin/create",
+                url: "ADMIN_PREPEND_MARKER/create",
                 type: "POST",
                 data: json_string,
                 contentType:"application/json; charset=utf-8",
