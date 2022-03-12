@@ -24,6 +24,15 @@ client.connect();
 
 //--------------------------------- Functions ----------------------------------
 
+String.prototype.replaceAll = function (replaceThis, withThis) {
+   var re = new RegExp(RegExp.quote(replaceThis),"g");
+   return this.replace(re, withThis);
+};
+
+RegExp.quote = function(str) {
+     return str.replace(/([.?*+^$[\]\\(){}-])/g, "\\$1");
+};
+
 function genString(len) {
     const charset = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let output = '';
