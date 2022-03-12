@@ -149,9 +149,8 @@ var replacements_admin = [
     key: "APP_PREPEND_MARKER",
     value: process.env.APP_PREPEND,
     files: [
-      "/secret.html",
-      "/404.html",
-      "/js/script-secret.js"
+      "/index.html",
+      "/js/script-admin.js"
     ]
   },
   {
@@ -176,6 +175,7 @@ admin_files.forEach((element) => {
 
 replacements_admin.forEach((rep) => {
   rep["files"].forEach((file) => {
+    console.log(file);
     admin_data[file] = admin_data[file].replaceAll(rep["key"], rep["value"]);
   })
 })
