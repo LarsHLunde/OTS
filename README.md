@@ -27,8 +27,10 @@ for database I'm using a Redis instance on localhost.
 - Create yum installer script
 - Install dotenv for project
 - Move url prepend to dotenv
-- Create api-endoint for url prepend
-- Fix all references to relative paths
+- Load all served files to memory
+- Add reference-markers to served files
+- Create a variable replacement function
+- Replace reference markers with set variables
 - Fix favicon placement
 - Add secret labels
 - Move password from index.js to redis
