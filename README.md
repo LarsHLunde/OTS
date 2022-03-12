@@ -24,15 +24,15 @@ for database I'm using a Redis instance on localhost.
 ### Plans
 |Task|State|
 |-|-|
-|Fix ajax callback for update and increase refresh timer for secret list|:x:|
-|Create yum installer script|:x:|
-|Install dotenv for project|:x:|
-|Move url prepend to dotenv|:x:|
-|Load all served files to memory|:x:|
-|Add reference-markers to served files|:x:|
-|Create a variable replacement function|:x:|
-|Replace reference markers with set variables|:x:|
-|Fix favicon placement|:x:|
+|Fix ajax callback for update and increase refresh timer for secret list|:heavy_check_mark:|
+|Create yum installer script|:heavy_check_mark:|
+|Install dotenv for project|:heavy_check_mark:|
+|Move url prepend to dotenv|:heavy_check_mark:|
+|Load all served files to memory|:heavy_check_mark:|
+|Add reference-markers to served files|:heavy_check_mark:|
+|Create a variable replacement function|:heavy_check_mark:|
+|Replace reference markers with set variables|:heavy_check_mark:|
+|Fix favicon placement|:heavy_check_mark:|
 |Add secret labels|:x:|
 |Move password from index.js to redis|:x:|
 |Rewrite express-basic-auth to use redis|:x:|
