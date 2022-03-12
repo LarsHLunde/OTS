@@ -8,6 +8,8 @@ const bodyParser = require("body-parser");
 
 const path = require('path');
 
+const fs = require('fs');
+
 const redis = require('redis');
 const client = redis.createClient({
   url: process.env.REDIS_URL
