@@ -11,14 +11,14 @@ const path = require('path');
 const redis = require('redis');
 const client = redis.createClient();
 
-// User options
-const app_port = 3000
-const admin_port = 3001
+require('dotenv').config();
+
+
+//---------------------------------- User options ----------------------------------
 
 client.on('connect', () => console.log('Connected to Redis'));
 client.on('error', (err) => console.log('Redis Client Error', err));
 client.connect();
-
 
 
 //---------------------------------- App functions ----------------------------------
@@ -41,6 +41,7 @@ app.get('/api/secret/*', function(req, res) {
 		}
 	})();
 });
+
 
 //---------------------------------- Admin functions ----------------------------------
 
