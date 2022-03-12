@@ -42,11 +42,8 @@ function sendSecret(){
                 type: "POST",
                 data: json_string,
                 contentType: "application/json; charset=utf-8",
-                dataType: "json",
-								success: function(result){
-									updateKeyTable()
-								}
-        });
+                dataType: "json"
+        }).done(function(data) {updateKeyTable()});
 };
 
 function init() {
