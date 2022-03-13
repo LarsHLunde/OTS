@@ -67,8 +67,8 @@ function setPassword(){
 function logout(){
 	try {
 		document.execCommand("ClearAuthenticationCache");
-		window.location.href("ADMIN_PREPEND_MARKER/");
-	} 
+		window.location.href = "ADMIN_PREPEND_MARKER/";
+	}
 	catch (exception) {
 		console.log(exception);
 	}
