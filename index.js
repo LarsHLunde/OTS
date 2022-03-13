@@ -165,6 +165,7 @@ app.get('/*', function(req, res) {
 
 
 //------------------------------- Admin functions ------------------------------
+
 var admin_files = fileTree("admin");
 var admin_data = {};
 
@@ -206,7 +207,11 @@ replacements_admin.forEach((rep) => {
 admin.use(bodyParser.json());
 admin.use(bodyParser.urlencoded({ extended: false }));
 
-admin.use(basicAuth({authorizer: redisAuthorizer, authorizeAsync: true}));
+admin.use(basicAuth({
+  authorizer: redisAuthorizer,
+  authorizeAsync: true,
+  challenge: true
+}));
 
 async function redisAuthorizer(username, password) {
     var userMatches = basicAuth.safeCompare(username, 'admin');
