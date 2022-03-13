@@ -41,4 +41,5 @@ for database I'm using a Redis instance on localhost.
 |Encrypt admin password|:x:|
 |Add button for password change|:x:|
 |Make a logout button|:x:|
+|Fix bug where empty messages error out|:x:|
 |Make look nicer|:x:|
