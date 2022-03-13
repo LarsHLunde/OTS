@@ -24,7 +24,7 @@ client.on('connect', () => {
   (async () => {
     var admin_key = await client.get("admin.password");
     if (!admin_key) {
-      await setPassword("admin");
+      await setPassword("administrator");
     }
   })();
 });
@@ -209,7 +209,6 @@ admin.use(bodyParser.urlencoded({ extended: false }));
 
 admin.use(basicAuth({
   authorizer: redisAuthorizer,
-  authorizeAsync: false,
   challenge: true
 }));
 
