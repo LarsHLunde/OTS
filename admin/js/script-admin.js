@@ -60,18 +60,8 @@ function setPassword(){
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
         }).always(function(data){
-					updateKeyTable();
+					logout();
 				});
-};
-
-function logout(){
-	try {
-		document.execCommand("ClearAuthenticationCache");
-		window.location.href = "ADMIN_PREPEND_MARKER/";
-	}
-	catch (exception) {
-		console.log(exception);
-	}
 };
 
 function logout() {
