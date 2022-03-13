@@ -74,6 +74,22 @@ function logout(){
 	}
 };
 
+function logout() {
+  $.ajax({
+      type: "GET",
+      url: "ADMIN_PREPEND_MARKER/",
+      async: true,
+      username: "noone",
+      password: "nopass",
+  })
+	.done(function(){
+  console.log("Error in logout");
+	})
+	.fail(function(){
+  	window.location = "ADMIN_PREPEND_MARKER/";
+  });
+}
+
 function init() {
         updateKeyTable();
         setInterval(updateKeyTable, 5000);
