@@ -208,12 +208,9 @@ admin.use(bodyParser.json());
 admin.use(bodyParser.urlencoded({ extended: false }));
 
 async function redisAuthorizer(username, password, cb) {
-    console.log(username);
-    console.log(password);
     var userMatches = basicAuth.safeCompare(username, 'admin');
     var passwordMatches = await checkPassword(password);
-    console.log(userMatches);
-    console.log(passwordMatches);
+
     return cb(null, (userMatches & passwordMatches));
 }
 
@@ -236,6 +233,11 @@ admin.get('/*', function(req, res) {
   else if(req.originalUrl == "/") {
     res.set("Content-Type", "text/html");
     res.send(admin_data["/index.html"]);
+  }
+
+  else if(req.originalUrl.match("/logout")) {
+		res.set('WWW-Authenticate', "Basic realm=Authorization Required");
+    res.sendStatus(401);
   }
 
   else if(req.originalUrl.match("/keys")) {

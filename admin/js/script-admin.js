@@ -47,6 +47,10 @@ function sendSecret(){
 				});
 };
 
+function logout(){
+	$.get("ADMIN_PREPEND_MARKER/logout");
+};
+
 function init() {
         updateKeyTable();
         setInterval(updateKeyTable, 10000);
