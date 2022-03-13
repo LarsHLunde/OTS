@@ -48,9 +48,7 @@ function sendSecret(){
 };
 
 function logout(){
-	$.get("ADMIN_PREPEND_MARKER/logout", function(data) {
-		window.location.assign("ADMIN_PREPEND_MARKER");
-	});
+	$.get("ADMIN_PREPEND_MARKER/logout");
 };
 
 function init() {
