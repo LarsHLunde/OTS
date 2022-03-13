@@ -235,12 +235,6 @@ admin.get('/*', function(req, res) {
     res.send(admin_data["/index.html"]);
   }
 
-  else if(req.originalUrl.match("/logout")) {
-		res.set('WWW-Authenticate', "Basic realm=Authorization Required");
-    res.setStatus(401);
-    res.redirect(process.env.ADMIN_PREPEND);
-  }
-
   else if(req.originalUrl.match("/keys")) {
     (async () => {
 		  var out = {};
@@ -268,6 +262,13 @@ admin.post('/create', (req, res) => {
         })();
 });
 
+admin.post('/change_password', (req, res) => {
+        (async () => {
+                var message = req.body;
+                await setPassword(message.value);
+                res.sendStatus(200);
+        })();
+});
 
 //--------------------------- Post declarative startup -------------------------
 

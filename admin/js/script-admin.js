@@ -47,8 +47,31 @@ function sendSecret(){
 				});
 };
 
+function setPassword(){
+        var input = document.getElementById("password_input");
+        message = {}
+        message.value = input.value;
+        var json_string = JSON.stringify(message);
+        input.value = "";
+        $.ajax({
+                url: "ADMIN_PREPEND_MARKER/create",
+                type: "POST",
+                data: json_string,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+        }).always(function(data){
+					updateKeyTable();
+				});
+};
+
 function logout(){
-	$.get("ADMIN_PREPEND_MARKER/logout");
+	try {
+		document.execCommand("ClearAuthenticationCache");
+		window.location.href("ADMIN_PREPEND_MARKER/");
+	} 
+	catch (exception) {
+		console.log(exception);
+	}
 };
 
 function init() {
