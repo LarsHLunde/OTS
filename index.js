@@ -214,7 +214,7 @@ async function redisAuthorizer(username, password, cb) {
     var passwordMatches = await checkPassword(password);
     console.log(userMatches);
     console.log(passwordMatches);
-    return (null, (userMatches & passwordMatches));
+    return cb(null, (userMatches & passwordMatches));
 }
 
 admin.use(basicAuth({
