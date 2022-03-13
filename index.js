@@ -237,6 +237,7 @@ admin.get('/*', function(req, res) {
 
   else if(req.originalUrl.match("/logout")) {
 		res.set('WWW-Authenticate', "Basic realm=Authorization Required");
+    res.setStatus(401);
     res.redirect(process.env.ADMIN_PREPEND);
   }
 
