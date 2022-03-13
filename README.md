@@ -39,5 +39,6 @@ for database I'm using a Redis instance on localhost.
 |"Create default" password mechanism|:x:|
 |Add crypto library|:x:|
 |Encrypt admin password|:x:|
+|Add button for password change|:x:|
 |Make a logout button|:x:|
 |Make look nicer|:x:|
