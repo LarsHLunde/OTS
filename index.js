@@ -207,14 +207,14 @@ replacements_admin.forEach((rep) => {
 admin.use(bodyParser.json());
 admin.use(bodyParser.urlencoded({ extended: false }));
 
-async function redisAuthorizer(username, password) {
+async function redisAuthorizer(username, password, cb) {
     console.log(username);
     console.log(password);
     var userMatches = basicAuth.safeCompare(username, 'admin');
     var passwordMatches = await checkPassword(password);
     console.log(userMatches);
     console.log(passwordMatches);
-    return userMatches & passwordMatches
+    return (null, (userMatches & passwordMatches));
 }
 
 admin.use(basicAuth({
