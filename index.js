@@ -142,7 +142,7 @@ app.get('/*', function(req, res) {
   else if(req.originalUrl.match("/api/secret/")) {
     (async () => {
     	var secret = await client.get("secret." + req.originalUrl.split("/")[3]);
-    	if(!secret) {
+    	if(secret === null) {
     		res.send("ERROR: Invalid or deleted key");
     	} else {
     		await client.del("secret." + req.originalUrl.split("/")[3]);
