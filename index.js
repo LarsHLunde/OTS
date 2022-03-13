@@ -20,7 +20,7 @@ const client = redis.createClient({
 require('dotenv').config();
 
 client.on('connect', () => {
-  console.log('Connected to Redis')
+  console.log('Connected to Redis');
   (async () => {
     var admin_key = await client.get("admin.password");
     if (!admin_key) {
