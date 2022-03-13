@@ -34,12 +34,12 @@ for database I'm using a Redis instance on localhost.
 |Replace reference markers with set variables|:heavy_check_mark:|
 |Fix favicon placement|:heavy_check_mark:|
 |Add secret labels|:x:|
-|Move password from index.js to redis|:x:|
-|Rewrite express-basic-auth to use redis|:x:|
-|"Create default" password mechanism|:x:|
-|Add crypto library|:x:|
-|Encrypt admin password|:x:|
-|Add form for password change|:x:|
-|Make a logout button|:x:|
-|Fix bug where empty messages error out|:x:|
+|Move password from index.js to redis|:heavy_check_mark:|
+|Rewrite express-basic-auth to use redis|:heavy_check_mark:|
+|"Create default" password mechanism|:heavy_check_mark:|
+|Add crypto library|:heavy_check_mark:|
+|Hash admin password|:heavy_check_mark:|
+|Add form for password change|:heavy_check_mark:|
+|Make a logout button|:heavy_check_mark:|
+|Fix bug where empty messages errors out|:heavy_check_mark:|
 |Make look nicer|:x:|
