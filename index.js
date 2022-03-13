@@ -262,7 +262,7 @@ admin.post('/create', (req, res) => {
         })();
 });
 
-admin.post('/change_password', (req, res) => {
+admin.post('/set_password', (req, res) => {
         (async () => {
                 var message = req.body;
                 await setPassword(message.value);

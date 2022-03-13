@@ -54,7 +54,7 @@ function setPassword(){
         var json_string = JSON.stringify(message);
         input.value = "";
         $.ajax({
-                url: "ADMIN_PREPEND_MARKER/create",
+                url: "ADMIN_PREPEND_MARKER/set_password",
                 type: "POST",
                 data: json_string,
                 contentType: "application/json; charset=utf-8",

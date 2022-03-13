@@ -26,39 +26,41 @@
 
 <div class="container">
 	<div class="jumbotron">
-	<h1>One Time Secret Admin</h1>
+	  <h1>One Time Secret Admin</h1>
 
-	<div class="table-responsive" id="keytable">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Unopened secrets</th>
-                                        <th>Create date</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Loading...</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+	  <div class="table-responsive" id="keytable">
+	  	<table class="table">
+	  		<thead>
+	  			<tr>
+	  				<th>Unopened secrets</th>
+                                          <th>Create date</th>
+	  			</tr>
+	  		</thead>
+	  		<tbody>
+	  			<tr>
+	  				<td>Loading...</td>
+	  			</tr>
+	  		</tbody>
+	  	</table>
+	  </div>
 
-	<p></p>
+	  <p></p>
 
-	<form>
-		<div class="form-group">
-			<label>Add new secret</label>
-			<textarea class="form-control" id="input" rows="10"></textarea>
-		</div>
-	</form>
-  <button onclick="sendSecret()" class="btn btn-primary">Submit</button>
-  <button onclick="logout()" class="btn btn-primary">Logout</button>
-	<form>
-		<label>Change Admin Password</label>
-		<input type="password" class="form-control" id="password_input">
-	</form>
-	<button onclick="setPassword()" class="btn btn-primary">Submit</button>
+	  <form>
+	  	<div class="form-group">
+	  		<label>Add new secret</label>
+	  		<textarea class="form-control" id="input" rows="10"></textarea>
+	  	</div>
+	  </form>
+    <button onclick="sendSecret()" class="btn btn-primary">Submit</button>
+    <button onclick="logout()" class="btn btn-primary">Logout</button>
+	  <p></p>
+	  <form>
+	  	<label>Change Admin Password</label>
+	  	<input type="password" class="form-control" id="password_input">
+	  </form>
+	  <p></p>
+	  <button onclick="setPassword()" class="btn btn-primary">Submit</button>
 	</div>
 </div>
 
