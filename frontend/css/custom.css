@@ -1,3 +1,30 @@
 body {
   background-color: #000000;
 }
+
+a {
+  color: #E3DAC9;
+}
+
+.jumbotron h1 {
+  color: #E66C31;
+}
+
+.jumbotron {
+  background-color: #131516;
+  color: #E3DAC9;
+}
+
+.form-control {
+  background-color: #000000;
+  color: #E3DAC9;
+}
+
+.input {
+  background-color: #000000;
+  color: #E3DAC9;
+}
+
+.btn {
+    background-color: #BB4C17;
+}
