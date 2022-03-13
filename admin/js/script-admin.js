@@ -48,10 +48,12 @@ function sendSecret(){
 };
 
 function logout(){
-	$.get("ADMIN_PREPEND_MARKER/logout");
+	$.get("ADMIN_PREPEND_MARKER/logout", function(data) {
+		window.location.assign("ADMIN_PREPEND_MARKER");
+	});
 };
 
 function init() {
         updateKeyTable();
-        setInterval(updateKeyTable, 10000);
+        setInterval(updateKeyTable, 5000);
 };
