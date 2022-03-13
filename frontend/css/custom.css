@@ -26,5 +26,16 @@ a {
 }
 
 .btn {
-    background-color: #BB4C17;
+  background-color: #BB4C17;
+}
+
+.panel {
+  background-color: #000000;
+  color: #E3DAC9;
+  border-color: #0F0F0F:
+}
+
+.panel-primary > .panel-heading {
+  background-color: #0F0F0F;
+  color: #E3DAC9;
 }
