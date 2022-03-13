@@ -24,7 +24,7 @@ client.on('connect', () => {
   (async () => {
     var admin_key = await client.get("admin.password");
     if (!admin_key) {
-      await setPassword("administrator");
+      await setPassword("admin");
     }
   })();
 });
@@ -207,16 +207,22 @@ replacements_admin.forEach((rep) => {
 admin.use(bodyParser.json());
 admin.use(bodyParser.urlencoded({ extended: false }));
 
+async function redisAuthorizer(username, password) {
+    console.log(username);
+    console.log(password);
+    var userMatches = basicAuth.safeCompare(username, 'admin');
+    var passwordMatches = await checkPassword(password);
+    console.log(userMatches);
+    console.log(passwordMatches);
+    return userMatches & passwordMatches
+}
+
 admin.use(basicAuth({
   authorizer: redisAuthorizer,
+  authorizeAsync: true,
   challenge: true
 }));
 
-async function redisAuthorizer(username, password) {
-    var userMatches = basicAuth.safeCompare(username, 'admin');
-    var passwordMatches = await checkPassword(password);
-    return userMatches & passwordMatches
-}
 
 admin.get('/*', function(req, res) {
   if (admin_data[req.originalUrl]){
