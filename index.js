@@ -209,7 +209,7 @@ admin.use(bodyParser.urlencoded({ extended: false }));
 
 admin.use(basicAuth({
   authorizer: redisAuthorizer,
-  authorizeAsync: true,
+  authorizeAsync: false,
   challenge: true
 }));
 
