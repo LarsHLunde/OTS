@@ -10,6 +10,8 @@ const path = require('path');
 
 const fs = require('fs');
 
+const bcrypt = require('bcrypt');
+
 const redis = require('redis');
 const client = redis.createClient({
   url: process.env.REDIS_URL
@@ -17,7 +19,16 @@ const client = redis.createClient({
 
 require('dotenv').config();
 
-client.on('connect', () => console.log('Connected to Redis'));
+client.on('connect', () => {
+  console.log('Connected to Redis')
+  (async () => {
+    var admin_key = await client.get("admin.password");
+    if (!admin_key) {
+      await setPassword("admin");
+    }
+  })();
+});
+
 client.on('error', (err) => console.log('Redis Client Error', err));
 client.connect();
 
@@ -63,6 +74,18 @@ function fileTree(folder) {
   return result;
 }
 
+const saltRounds = parseInt(process.env.BCRYPT_SALTROUNDS);
+
+async function setPassword(password) {
+  var hashedPassword = await bcrypt.hash(password, saltRounds);
+  await client.set("admin.password", hashedPassword);
+}
+
+async function checkPassword(password) {
+  var hash = await client.get("admin.password");
+  var check = await bcrypt.compare(password, hash);
+  return check;
+}
 
 //-------------------------------- App functions -------------------------------
 
@@ -205,7 +228,7 @@ admin.get('/*', function(req, res) {
   else if(req.originalUrl.match("/keys")) {
     (async () => {
 		  var out = {};
-      keys = await client.keys("secret.*");
+      var keys = await client.keys("secret.*");
 		  for (let i = 0; i < keys.length; i++) {
 			  out[keys[i]] = await client.get("timestamp." + keys[i].substring(7))
 		  }
