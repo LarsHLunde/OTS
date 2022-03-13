@@ -87,6 +87,7 @@ async function checkPassword(password) {
   return check;
 }
 
+
 //-------------------------------- App functions -------------------------------
 
 var app_files = fileTree("frontend");
@@ -202,14 +203,16 @@ replacements_admin.forEach((rep) => {
   })
 })
 
-
 admin.use(bodyParser.json());
 admin.use(bodyParser.urlencoded({ extended: false }));
 
-admin.use(basicAuth({
-    users: { admin: 'admin' },
-    challenge: true
-}));
+admin.use(basicAuth({authorizer: redisAuthorizer, authorizeAsync: true}));
+
+async function redisAuthorizer(username, password) {
+    var userMatches = basicAuth.safeCompare(username, 'admin');
+    var passwordMatches = await checkPassword(password);
+    return userMatches & passwordMatches
+}
 
 admin.get('/*', function(req, res) {
   if (admin_data[req.originalUrl]){
